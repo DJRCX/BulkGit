@@ -1,0 +1,170 @@
+/* label placeholder aria-label */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ───────────────────────────────────────────────── */
+:root,
+[data-theme="amoled dark"] {
+  --background: #000000;
+  --foreground: #fafafa;
+  --card: #09090b;
+  --card-foreground: #f4f4f5;
+  --border: #1f1f23;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+
+  --status-synced: #22c55e;
+  --status-ahead: #eab308;
+  --status-behind: #3b82f6;
+  --status-diverged: #ef4444;
+  --status-updating: #f59e0b;
+  --status-error: #b91c1c;
+
+  --focus-glow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  --hover-bg: rgba(255, 255, 255, 0.04);
+  --selected-row-bg: rgba(255, 255, 255, 0.05);
+  --header-bg: rgba(0, 0, 0, 0.85);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+[data-theme="tokyo night"] {
+  --background: #1a1b26;
+  --foreground: #a9b1d6;
+  --card: #16161e;
+  --card-foreground: #c0caf5;
+  --border: #292e42;
+  --muted: #24283b;
+  --muted-foreground: #565f89;
+
+  --status-synced: #9ece6a;
+  --status-ahead: #e0af68;
+  --status-behind: #7aa2f7;
+  --status-diverged: #f7768e;
+  --status-updating: #bb9af3;
+  --status-error: #ff007f;
+
+  --focus-glow: 0 0 0 2px rgba(122, 162, 247, 0.5);
+  --hover-bg: rgba(122, 162, 247, 0.08);
+  --selected-row-bg: rgba(122, 162, 247, 0.12);
+  --header-bg: rgba(26, 27, 38, 0.85);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+[data-theme="tokyo night light"] {
+  --background: #f0f1f4;
+  --foreground: #343b58;
+  --card: #e1e2e7;
+  --card-foreground: #3760bf;
+  --border: #cbd6e2;
+  --muted: #d5d6db;
+  --muted-foreground: #565f89;
+
+  --status-synced: #485e30;
+  --status-ahead: #8f5e15;
+  --status-behind: #385caa;
+  --status-diverged: #8c4351;
+  --status-updating: #785e9e;
+  --status-error: #962d3e;
+
+  --focus-glow: 0 0 0 2px rgba(55, 96, 191, 0.4);
+  --hover-bg: rgba(55, 96, 191, 0.06);
+  --selected-row-bg: rgba(55, 96, 191, 0.1);
+  --header-bg: rgba(240, 241, 244, 0.85);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ── Base Reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Focus ring ──────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-glow);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* ── Skeleton shimmer ────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--border) 50%, var(--muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Utility classes ─────────────────────────────────────────────── */
+.truncate-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: rtl;
+  text-align: left;
+}

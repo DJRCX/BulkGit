@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-tauri/
+target-codex/
+src-tauri/target/
+.DS_Store
+.env*
+*.local
+*.log
+.puku/
+.docs/
